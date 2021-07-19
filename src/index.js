@@ -1,28 +1,35 @@
 import _ from 'lodash';
 import './style.css';
-import printMe from './print.js';
+import testImg from './test.jpg';
+import printMe from './print';
 
-
-import logo from './logo.png';
-
-function component () {
+function component() {
   const element = document.createElement('div');
+
+  const testFont = document.createElement('div');
+  testFont.innerHTML = _.join(['Hello', 'webpack222 !!!', '你好，世界！'], ' ');
+  testFont.classList.add('hello');
+
+  const testBg = document.createElement('div');
+  testBg.classList.add('bg-test');
+
+  const testImgElement = document.createElement('div');
+  testImgElement.classList.add('test-img');
+  const myImg = new Image();
+  myImg.src = testImg;
+  testImgElement.appendChild(myImg);
+
+  const btnWrapper = document.createElement('div');
+
   const btn = document.createElement('button');
-
-  // lodash（目前通过一个 script 引入）对于执行这一行是必需的
-  element.classList.add('hello');
-  element.innerHTML = _.join(['Hello', 'webpack!!!'], ' ');
-
-  // 将图像添加到我们已经存在的 div 中。
-  const myIcon = new Image();
-  myIcon.src = logo;
-
-  element.appendChild(myIcon);
-
-  btn.innerHTML = 'Click me and check the console!';
+  btn.innerHTML = '按钮';
   btn.onclick = printMe;
+  btnWrapper.appendChild(btn);
 
-  element.appendChild(btn);
+  element.appendChild(testFont);
+  element.appendChild(testBg);
+  element.appendChild(testImgElement);
+  element.appendChild(btnWrapper);
 
   return element;
 }
